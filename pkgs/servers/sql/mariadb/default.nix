@@ -356,6 +356,9 @@ let
             "-DPLUGIN_AUTH_PAM_V1=NO"
             "-DWITHOUT_OQGRAPH=1"
             "-DWITHOUT_PLUGIN_S3=1"
+          ]
+          ++ lib.optionals (lib.versionAtLeast finalAttrs.version "11.4") [
+            "-DPLUGIN_DUCKDB=NO"
           ];
 
         preConfigure = lib.optionalString (!stdenv.hostPlatform.isDarwin) ''
